@@ -1,0 +1,31 @@
+<html>
+  <head>
+    <title>Modmail Simulator</title>
+    <script>
+      var users = ["miner", "hacker", "digger", "x-rayer", "whiner", "pvper"]
+      var issues = ["I'm getting the 'only one account allowed' message", "I was banned for running a hacked client but now I want to play legit", "It says I'm banned. Pls fix", "I lost my diamonds in lava. Give them back", "A previous incarnation seemed better. Let's revert to that", "I have 12 friends that all play from my house. Can you remove the alt associations between us? They're definitely not my alts...","How does the server work? I threw away the book I got at login"];
+            
+      function rand(lowerbound, upperbound){
+        return(Math.floor(Math.random() * (upperbound-lowerbound+1) + lowerbound));
+      }
+      
+      function set_text(element_id, text){
+        var element = document.getElementById(element_id).innerHTML = text;
+      }
+      
+      function generate_problem(){
+        set_text("mail_count", "Remaining messages: " + rand(100,200));
+        set_text("user", "From: " + users[rand(0, users.length-1)] + rand(100,999));
+        set_text("issue", issues[rand(0,issues.length-1)]);
+      }
+    </script>
+  </head>
+  <body onload="generate_problem()">
+    <h1>ModMail Simulator</h1>
+    <p id="mail_count"></p>
+    <p id="user" style="font-weight:bold"></p>
+    <p id="issue"></p>
+    <p><textarea cols="50" rows="10"></textarea></p>
+    <button onclick="window.location.reload()">Send</button>
+  </body>
+</html>

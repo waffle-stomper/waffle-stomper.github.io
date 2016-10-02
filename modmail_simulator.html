@@ -18,6 +18,15 @@
         set_text("user", "From: " + users[rand(0, users.length-1)] + rand(100,999));
         set_text("issue", issues[rand(0,issues.length-1)]);
       }
+      
+      function send(){
+        if (document.getElementById("response").value == ""){
+          set_text("error", "You must enter a response");
+        }
+        else{
+          window.location.reload();
+        }
+      }
     </script>
   </head>
   <body onload="generate_problem()">
@@ -25,7 +34,8 @@
     <p id="mail_count"></p>
     <p id="user" style="font-weight:bold"></p>
     <p id="issue"></p>
-    <p><textarea cols="50" rows="10"></textarea></p>
-    <button onclick="window.location.reload()">Send</button>
+    <p><textarea id="response" cols="50" rows="10"></textarea></p>
+    <p><button onclick="send()">Send</button></p>
+    <p id="error" style="color:red;font-weight:bold"></p>
   </body>
 </html>

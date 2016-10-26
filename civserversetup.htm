@@ -1,0 +1,53 @@
+<html>
+  <head> 
+    <title>Civcraft-style Server Setup Guide</title>
+  </head>
+  <body>
+    <h1>Civcraft-style Server Setup Guide</h1>
+    <p>Sections of this guide have been stolen from: https://github.com/ProgrammerDan/civcraft-vm</p>
+    <h3>Prerequisites:</h3>
+    <ul>
+      <li>Spigot 1.10.2 (agree to the EULA and run at least once)</li>
+      <li>MySQL &lt;version number&gt; </li>
+    </ul>
+  <h3>Initial Setup:</h3>
+    <p>Almost all of the mods require NameLayer, CivModCore, and CivMenu. Get them here: <a href="https://build.civcraft.co/">https://build.civcraft.co/</a>. If there are several options available, choose the one ending in '-master'. It should be the most recent.</p>
+    <ol>
+      <li>Put the jar files you download into the plugins directory and run Spigot. It should generate a bunch of errors. </li>
+      <li>Stop spigot.</li>
+      <li>In the plugins directory, you should find generated folders for CivMenu and NameLayer, each containing a config.yml file. </li>
+      <li>Open plugins/CivMenu/config.yml and find the 'mysql' section.</li>
+      <li>Set a password for CivMenu to use for database access.</li>
+      <li>[Optional] If you like, you can also change the username and dbname, but that's usually not necessary.</li>
+      <li>If the SQL server is on another machine or doesn't use the default port, change the hostname/port</li>
+      <li>Repeat steps 4-7 for plugins/NameLayer/config.yml. Note that the SQL config is in the 'sql' section, and you'll need to create a username as well as a password</li>
+    </ol>
+    <h3>Database Setup - PHPMyAdmin:</h3>
+  <p>&lt;Placeholder&gt; </p>
+    <h3>Database Setup - Command Line:</h3>
+    <ol>
+      <li>Log in as root: <strong>mysql -uroot -p</strong> then enter your password at the prompt. If you didn't set a password, you can omit the <strong>-p</strong>.</li>
+      <li>Create credentials for CivMenu. If your CivMenu username is 'bukkit' and password is 'minecraft', the command would be: <strong><br>
+      CREATE USER bukkit IDENTIFIED BY 'minecraft';</strong></li>
+      <li>Create the database for CivMenu. If you used the default dbname, the command would be:<br>
+      <strong>CREATE DATABASE IF NOT EXISTS bukkit;</strong></li>
+      <li>Give the CivMenu user permission to use the database. Assuming 'bukkit' is your username and 'bukkit' is your database:<br>
+      <strong>GRANT ALL ON bukkit.* TO bukkit;</strong></li>
+      <li> Exit mysql: <strong>exit</strong></li>
+      <li>[Optional] Test your new CivMenu credentials &amp; database by logging in with them. Assuming 'bukkit' is the database you created, 'bukkit' is your username, and 'minecraft' is its password:<br>
+      <strong>mysql bukkit -ubukkit -p</strong> then enter <strong>minecraft</strong> at the prompt. If there are no errors, everything was correct! Use the <strong>exit</strong> command to quit.</li>
+      <li> Repeat steps 2-6 for NameLayer.</li>
+      <li>Start Spigot. If everything went well, there shouldn't be any errors.<br>
+      </li>
+    </ol>
+  <h3>Adding Plugins:</h3>
+  <p>This is very similar to the NameLayer/CivMenu setup.</p>
+  <ol>
+    <li>Drop the jar into the plugins directory</li>
+    <li>If there's a config file on build.civcraft.co, you can manually create a directory for it and add it. Otherwise, run Spigot once to create it. </li>
+    <li>Open the config file and fill out the sql/mysql section. Note that this isn't necessary for FactoryMod because it doesn't use the database.</li>
+    <li>Use the commands in the previous section to add credentials and a database for the plugin</li>
+    <li>Run Spigot and watch for errors.</li>
+  </ol>
+  </body>
+</html>

@@ -23,7 +23,28 @@
       <li>Repeat steps 4-7 for plugins/NameLayer/config.yml. Note that the SQL config is in the 'sql' section, and you'll need to create a username as well as a password</li>
     </ol>
     <h3>Database Setup - PHPMyAdmin:</h3>
-  <p>&lt;Placeholder&gt; </p>
+  <p>I haven't had a chance to test this yet, so some information might be inaccurate.</p>
+  <ol>
+      <li>Log in as root</li>
+      <li>Select 'Databases' from the top menu bar</li>
+      <li>If the database from the CivMenu config file already exists in the list of databases, you can skip to step 8</li>
+      <li>Enter the name of the database from the CivMenu config file into the 'Database name' box</li>
+      <li>Set the collation dropdown box to 'utf8_general_ci'</li>
+      <li>Click 'Create'</li>
+      <li>Click the house icon in the top left-hand corner (just below the phpMyAdmin logo)</li>
+      <li>Select 'User accounts' from the bar at the top of the page</li>
+      <li>If the username from the CivMenu config.yml file exists, click the 'Edit privileges' link and skip to step 13</li>
+      <li>Click 'Add user account' (in the 'New' section)</li>
+      <li>Enter the username &amp; password you set in the CivMenu config.yml file</li>
+      <li>Click 'Go' at the bottom of the page</li>
+      <li>Click the 'Database' oval (just above 'Edit privileges: User account...')</li>
+      <li>If the database from the CivMenu config is listed in the 'Database-specific privileges' table, you can skip to step &lt;number&gt;</li>
+      <li>Select the database from CivMenu config in the 'Add privileges...' list</li>
+      <li>Click 'Go'</li>
+      <li>Check the 'Check all' box near the top</li>
+      <li>Click 'Go'</li>
+      <li>Repeat steps 2-18 for NameLayer</li>
+  </ol>
     <h3>Database Setup - Command Line:</h3>
     <ol>
       <li>Log in as root: <strong>mysql -uroot -p</strong> then enter your password at the prompt. If you didn't set a password, you can omit the <strong>-p</strong>.</li>
